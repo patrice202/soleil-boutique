@@ -61,10 +61,10 @@ nav a:hover { color: var(--beige); }
  
 /* ---------- Hero ---------- */
 .hero {
-  background: var(--brown);
+  background: linear-gradient(rgba(59, 42, 36, 0.62), rgba(59, 42, 36, 0.62)), url("hero.jpeg") center / cover no-repeat;
   color: var(--cream);
   text-align: center;
-  padding: 70px 20px;
+  padding: 110px 20px;
 }
  
 .hero h1 {

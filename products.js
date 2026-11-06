@@ -24,7 +24,7 @@ function getCustomProducts() {
   }
 }
  
-/ The full catalog: the Admin-saved catalog if there is one,
+//The full catalog: the Admin-saved catalog if there is one,
 // otherwise the official list above + admin-added products.
 function getCatalog() {
   try {
