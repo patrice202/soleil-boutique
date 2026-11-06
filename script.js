@@ -24,7 +24,7 @@ function renderProducts() {
     const card = document.createElement("div");
     card.className = "show-card";
     card.setAttribute("data-id", p.id);
-    card.innerHTML = '<img src="' + p.photo + '" alt="' + p.name + '" draggable="false">';
+    card.innerHTML = '<img loading="lazy" decoding="async" src="' + p.photo + '" alt="' + p.name + '" draggable="false">';
     box.appendChild(card);
   });
  
@@ -95,7 +95,7 @@ function addToCart(id) {
   document.getElementById("cart-zone").classList.remove("hidden");
   alert("Added to your cart.");
 }
-
+ 
   alert("Added to your cart.");
 }
  
@@ -219,3 +219,19 @@ document.getElementById("order-form").addEventListener("submit", function (e) {
   saveCart();
   renderCart();
 });
+/* ---------- Pro touches: reveal, photo viewer, back to top ---------- */
+let downX = null;
+const rail = document.getElementById("showcase");
+rail.addEventListener("pointerdown", function (e) { downX = e.clientX; });
+rail.addEventListener("click", function (e) {
+  if (e.target.tagName !== "IMG") { return; }
+  if (downX !== null && Math.abs(e.clientX - downX) > 6) { return; }
+  document.getElementById("lightbox-img").src = e.target.src;
+  document.getElementById("lightbox-caption").textContent = e.target.alt;
+  document.getElementById("lightbox").classList.remove("hidden");
+});
+document.getElementById("lightbox").addEventListener("click", function () {
+  document.getElementById("lightbox").classList.add("hidden");
+});
+ 
+document.documentElement.classList.add("js-reveal");

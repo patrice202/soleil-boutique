@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Soleil Boutique — Sunglasses</title>
+  <meta name="description" content="Soleil Boutique - Elegant sunglasses, timeless style. Order easily on WhatsApp.">
+  <meta name="theme-color" content="#5B0F1A">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Soleil Boutique - Sunglasses">
+  <meta property="og:description" content="Elegance in every glance. Discover our selection and order on WhatsApp.">
+  <meta property="og:image" content="https://patrice202.github.io/soleil-boutique/hero.jpeg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='20' fill='%23B79E8C'/%3E%3Cg stroke='%23B79E8C' stroke-width='7' stroke-linecap='round'%3E%3Cline x1='50' y1='8' x2='50' y2='20'/%3E%3Cline x1='50' y1='80' x2='50' y2='92'/%3E%3Cline x1='8' y1='50' x2='20' y2='50'/%3E%3Cline x1='80' y1='50' x2='92' y2='50'/%3E%3Cline x1='20' y1='20' x2='29' y2='29'/%3E%3Cline x1='71' y1='71' x2='80' y2='80'/%3E%3Cline x1='80' y1='20' x2='71' y2='29'/%3E%3Cline x1='29' y1='71' x2='20' y2='80'/%3E%3C/g%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -30,7 +37,7 @@
   </section>
  
   <!-- ================= SELECTION ================= -->
-  <section id="selection">
+  <section id="selection" class="reveal">
     <h2>The Selection</h2>
     <div class="showcase-wrap">
       <button class="showcase-arrow" onclick="slideShowcase(-1)">‹</button>
@@ -62,7 +69,7 @@
   </section>
  
   <!-- ================= ORDER ================= -->
-  <section id="order">
+  <section id="order" class="reveal">
     <h2>Place Your Order</h2>
     <p class="note">Complete the form below: WhatsApp will open with your order already written. Simply press Send there to transmit it to the boutique.</p>
     <form id="order-form">
@@ -90,4 +97,10 @@
   <script src="products.js"></script>
   <script src="script.js"></script>
 </body>
+<div id="lightbox" class="lightbox hidden">
+    <button id="lightbox-close" aria-label="Close">×</button>
+    <img id="lightbox-img" src="" alt="">
+    <p id="lightbox-caption"></p>
+  </div>
+  <button id="to-top" class="to-top" aria-label="Back to top">↑</button>
 </html>
