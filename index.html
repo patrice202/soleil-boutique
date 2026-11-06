@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soleil Boutique — Sunglasses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="brand">SOLEIL BOUTIQUE</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#selection">Selection</a>
+      <a href="#about">About</a>
+      <a href="#order">Order</a>
+    </nav>
+    <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+  </header>
+ 
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="home">
+    <h1>Elegance in Every Glance</h1>
+    <p>A curated selection of sunglasses — sober, elegant, timeless.</p>
+    <a class="btn" href="#selection">Shop the Selection</a>
+  </section>
+ 
+  <!-- ================= SELECTION ================= -->
+  <section id="selection">
+    <h2>The Selection</h2>
+    <div id="products-grid" class="grid"></div>
+  </section>
+ 
+  <!-- ================= CART ================= -->
+  <section id="cart-zone" class="hidden">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <p class="total">Total: <span id="cart-total">$0.00</span></p>
+  </section>
+ 
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <h2>About Soleil Boutique</h2>
+    <p>Soleil Boutique selects every pair with one standard: quiet elegance that never goes out of style. Clean lines, quality materials, and honest prices — eyewear chosen to be worn every day, and kept for years.</p>
+  </section>
+ 
+  <!-- ================= ORDER ================= -->
+  <section id="order">
+    <h2>Place Your Order</h2>
+    <p class="note">Complete the form below: WhatsApp will open with your order already written. Simply press Send there to transmit it to the boutique.</p>
+    <form id="order-form">
+      <label>Your name
+        <input id="field-name" type="text" required>
+      </label>
+      <label>Your phone
+        <input id="field-phone" type="tel" required>
+      </label>
+      <label>Your address
+        <input id="field-address" type="text" required>
+      </label>
+      <button type="submit" class="btn">Send My Order</button>
+    </form>
+    <p id="order-message"></p>
+  </section>
+ 
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <p>© <span id="year"></span> Soleil Boutique — Elegance · Quality · Confidence</p>
+    <p><a href="admin.html">Admin</a></p>
+  </footer>
+ 
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

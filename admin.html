@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soleil Boutique — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="brand">SOLEIL BOUTIQUE</div>
+    <nav>
+      <a href="index.html">View the store</a>
+    </nav>
+  </header>
+ 
+  <!-- ================= LOGIN ================= -->
+  <section id="login-zone">
+    <h2>Login</h2>
+    <label>Username
+      <input id="field-user" type="text">
+    </label>
+    <label>Password
+      <input id="field-pass" type="password">
+    </label>
+    <button class="btn" id="login-btn">Sign In</button>
+    <p id="login-message"></p>
+  </section>
+ 
+  <!-- ================= DASHBOARD ================= -->
+  <section id="admin-zone" class="hidden">
+ 
+    <h2>Orders</h2>
+    <div id="orders-list"></div>
+ 
+    <h2>Products & Prices</h2>
+    <p class="note">Change a price, then click Save Prices. To make the catalog official for every customer: click Download products.js and replace the file on GitHub with the downloaded one (same name).</p>
+    <div id="prices-list"></div>
+    <button class="btn" id="save-prices-btn">Save Prices</button>
+    <button class="btn btn-light" id="download-btn">Download products.js</button>
+    <p id="prices-message"></p>
+ 
+    <h2>Add a Product</h2>
+    <label>Product name
+      <input id="new-name" type="text">
+    </label>
+    <label>Price ($)
+      <input id="new-price" type="number" min="0" step="0.01">
+    </label>
+    <label>Photo
+      <input id="new-photo" type="file" accept="image/*">
+    </label>
+    <button class="btn" id="add-product-btn">Add Product</button>
+    <p id="add-message"></p>
+ 
+    <p><a href="index.html">← Back to the store</a></p>
+  </section>
+ 
+  <script src="products.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

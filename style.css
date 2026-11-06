@@ -1,0 +1,216 @@
+/* ============================================================
+   SOLEIL BOUTIQUE — Brand stylesheet
+   Palette: bordeaux #5B0F1A · brown #3B2A24 · taupe #6B4E42
+            beige #B79E8C · cream #F7F3EE
+   Fonts: Playfair Display (headings) · Montserrat (text)
+   ============================================================ */
+ 
+:root {
+  --bordeaux: #5B0F1A;
+  --brown: #3B2A24;
+  --taupe: #6B4E42;
+  --beige: #B79E8C;
+  --cream: #F7F3EE;
+}
+ 
+* { box-sizing: border-box; }
+ 
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+}
+ 
+/* ---------- Header ---------- */
+header {
+  background: var(--bordeaux);
+  color: var(--cream);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+ 
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  letter-spacing: 3px;
+}
+ 
+nav a {
+  color: var(--cream);
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 14px;
+}
+ 
+nav a:hover { color: var(--beige); }
+ 
+#cart-btn {
+  background: var(--cream);
+  color: var(--bordeaux);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+ 
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--brown);
+  color: var(--cream);
+  text-align: center;
+  padding: 70px 20px;
+}
+ 
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  margin: 0 0 12px;
+}
+ 
+/* ---------- Sections ---------- */
+section {
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+ 
+h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--bordeaux);
+  font-size: 30px;
+}
+ 
+/* ---------- Product grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+ 
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(59, 42, 36, 0.15);
+}
+ 
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+ 
+.card h3 {
+  font-family: 'Playfair Display', serif;
+  margin: 12px 0 6px;
+}
+ 
+.price {
+  color: var(--bordeaux);
+  font-weight: 600;
+  font-size: 18px;
+}
+ 
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  background: var(--bordeaux);
+  color: var(--cream);
+  border: none;
+  padding: 11px 20px;
+  border-radius: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+ 
+.btn:hover { background: var(--taupe); }
+ 
+.btn-light {
+  background: var(--beige);
+  color: var(--brown);
+}
+ 
+/* ---------- Forms ---------- */
+form label {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+ 
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--beige);
+  border-radius: 8px;
+  margin-top: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+ 
+input[type="file"] { border: none; padding-left: 0; }
+ 
+.note { font-size: 14px; color: var(--taupe); }
+ 
+.hidden { display: none; }
+ 
+/* ---------- Cart & orders ---------- */
+.total {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--bordeaux);
+}
+ 
+.order-card {
+  background: white;
+  border-left: 5px solid var(--bordeaux);
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}
+ 
+/* ---------- Admin ---------- */
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+ 
+.price-row input { width: 110px; }
+ 
+.thumb {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+ 
+/* ---------- Footer ---------- */
+footer {
+  background: var(--brown);
+  color: var(--cream);
+  text-align: center;
+  padding: 24px;
+}
+ 
+footer a { color: var(--beige); }
+ 
+/* ---------- Responsive ---------- */
+@media (max-width: 800px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 30px; }
+}
+ 
+@media (max-width: 520px) {
+  .grid { grid-template-columns: 1fr; }
+}
