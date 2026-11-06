@@ -14,6 +14,7 @@
 }
  
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
  
 body {
   margin: 0;
@@ -24,6 +25,9 @@ body {
  
 /* ---------- Header ---------- */
 header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   background: var(--bordeaux);
   color: var(--cream);
   display: flex;
@@ -51,6 +55,7 @@ nav a:hover { color: var(--beige); }
  
 #cart-btn {
   background: var(--cream);
+  text-decoration: none;
   color: var(--bordeaux);
   border: none;
   padding: 8px 14px;
@@ -75,6 +80,7 @@ nav a:hover { color: var(--beige); }
  
 /* ---------- Sections ---------- */
 section {
+  scroll-margin-top: 80px;
   padding: 40px 20px;
   max-width: 1100px;
   margin: 0 auto;
@@ -214,4 +220,174 @@ footer a { color: var(--beige); }
  
 @media (max-width: 520px) {
   .grid { grid-template-columns: 1fr; }
+  @media (max-width: 520px) {
+  .grid { grid-template-columns: 1fr; }
+  header { justify-content: center; text-align: center; }
+}
+}
+/* ---------- Cart lines ---------- */
+#cart-items button {
+  background: none;
+  border: 1px solid var(--taupe);
+  color: var(--taupe);
+  border-radius: 14px;
+  padding: 2px 10px;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+/* ---------- Cart page ---------- */
+.cart-line {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--beige);
+}
+ 
+.cart-line img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+ 
+.cart-line .cart-name { flex: 1; font-weight: 600; }
+/* ---------- Cinematic showcase ---------- */
+.showcase-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ 
+.showcase {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 30px 19%;
+  scrollbar-width: none;
+  flex: 1;
+  position: relative;
+}
+ 
+.showcase::-webkit-scrollbar { display: none; }
+ 
+.show-card {
+  flex: 0 0 62%;
+  scroll-snap-align: center;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(59, 42, 36, 0.12);
+  padding: 18px;
+  opacity: 0.45;
+  transform: scale(0.92);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+ 
+.show-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+}
+ 
+.show-card.active {
+  opacity: 1;
+  transform: scale(1);
+}
+ 
+.showcase-arrow {
+  background: var(--bordeaux);
+  color: var(--cream);
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+ 
+.showcase-info { text-align: center; margin-top: 6px; }
+ 
+.showcase-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  margin: 6px 0 2px;
+}
+ 
+@media (max-width: 520px) {
+  .showcase { padding-left: 9%; padding-right: 9%; }
+  .show-card { flex-basis: 82%; }
+  .show-card img { height: 220px; }
+}
+/* ---------- Tonton the crocodile, cinema version ---------- */
+.croco-zone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: crocoIn 0.8s ease-out;
+}
+ 
+@keyframes crocoIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+ 
+.croco {
+  width: 150px;
+  animation: crocoBob 4s ease-in-out infinite alternate;
+}
+ 
+@keyframes crocoBob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-5px); }
+}
+ 
+.croco-tongue {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: tongueWag 2.2s ease-in-out infinite alternate;
+}
+ 
+@keyframes tongueWag {
+  from { transform: rotate(-4deg); }
+  to { transform: rotate(4deg); }
+}
+ 
+.croco-heart {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: crocoPulse 1.6s ease-in-out infinite;
+}
+ 
+@keyframes crocoPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+ 
+.croco-side-heart { animation: crocoFloat 3s ease-in-out infinite; }
+.croco-delay { animation-delay: 1.2s; }
+ 
+@keyframes crocoFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.75; }
+  50% { transform: translateY(-9px); opacity: 1; }
+}
+ 
+.croco-bubble {
+  background: #ffffff;
+  border: 1px solid var(--beige);
+  border-radius: 14px;
+  padding: 10px 16px;
+  font-style: italic;
+  color: var(--taupe);
+  margin: 0;
+}
+ 
+.croco-empty { text-align: center; padding: 12px 0; }
+.croco-mini { width: 90px; }
+ 
+@media (prefers-reduced-motion: reduce) {
+  .croco-zone, .croco, .croco-tongue, .croco-heart, .croco-side-heart { animation: none; }
 }

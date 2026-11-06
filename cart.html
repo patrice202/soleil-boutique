@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart — Soleil Boutique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="brand">SOLEIL BOUTIQUE</div>
+    <nav>
+      <a href="index.html#home">Home</a>
+      <a href="index.html#selection">Selection</a>
+      <a href="index.html#about">About</a>
+      <a href="#order">Order</a>
+    </nav>
+    <a id="cart-btn" href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+  </header>
+ 
+  <!-- ================= CART ================= -->
+  <section id="cart-page">
+    <h2>Your Cart</h2>
+    <div class="croco-zone">
+      <svg class="croco" viewBox="0 0 220 185" aria-hidden="true">
+        <path class="croco-side-heart" d="M28 62 C22 54 14 50 14 43 C14 37 18 34 22 34 C25 34 27 36 28 38 C29 36 31 34 34 34 C38 34 42 37 42 43 C42 50 34 54 28 62 Z" fill="#5B0F1A"/>
+        <path class="croco-side-heart croco-delay" d="M192 52 C187 45 180 42 180 36 C180 31 183 28 187 28 C189 28 191 30 192 31 C193 30 195 28 197 28 C201 28 204 31 204 36 C204 42 197 45 192 52 Z" fill="#B79E8C"/>
+        <rect x="48" y="8" width="52" height="30" rx="12" fill="#2B2320"/>
+        <rect x="120" y="8" width="52" height="30" rx="12" fill="#2B2320"/>
+        <path d="M100 18 Q110 12 120 18" fill="none" stroke="#2B2320" stroke-width="5"/>
+        <path d="M48 14 L30 8 M172 14 L190 8" stroke="#2B2320" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="110" cy="108" rx="80" ry="56" fill="#7C9070"/>
+        <circle cx="76" cy="62" r="17" fill="#7C9070"/>
+        <circle cx="144" cy="62" r="17" fill="#7C9070"/>
+        <path class="croco-heart" d="M76 70 C69 62 63 58 63 52 C63 47 66 44 70 44 C73 44 75 46 76 48 C77 46 79 44 82 44 C86 44 89 47 89 52 C89 58 83 62 76 70 Z" fill="#5B0F1A"/>
+        <path class="croco-heart" d="M144 70 C137 62 131 58 131 52 C131 47 134 44 138 44 C141 44 143 46 144 48 C145 46 147 44 150 44 C154 44 157 47 157 52 C157 58 151 62 144 70 Z" fill="#5B0F1A"/>
+        <ellipse cx="110" cy="130" rx="58" ry="32" fill="#A9BC9B"/>
+        <ellipse cx="94" cy="120" rx="5" ry="3.5" fill="#4E6148"/>
+        <ellipse cx="126" cy="120" rx="5" ry="3.5" fill="#4E6148"/>
+        <g class="croco-tongue">
+          <path d="M97 143 C95 163 99 178 110 178 C121 178 125 163 123 143 Q110 151 97 143 Z" fill="#D96C7B"/>
+          <path d="M110 154 L110 168" stroke="#B84A5E" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <path d="M68 138 Q110 160 152 138" fill="none" stroke="#3B2A24" stroke-width="4" stroke-linecap="round"/>
+        <path d="M88 147 l6 10 l6 -10 Z" fill="#F7F3EE"/>
+        <path d="M120 147 l6 10 l6 -10 Z" fill="#F7F3EE"/>
+        <ellipse cx="52" cy="112" rx="10" ry="6" fill="#C98A7D" opacity="0.55"/>
+        <ellipse cx="168" cy="112" rx="10" ry="6" fill="#C98A7D" opacity="0.55"/>
+      </svg>
+      <p class="croco-bubble">Psst… one pair is never enough.</p>
+    </div>
+    <div id="cart-items"></div>
+    <p class="total">Total: <span id="cart-total">$0.00</span></p>
+    <p>
+      <a class="btn btn-light" href="index.html#selection">Continue Shopping</a>
+      <button class="btn btn-light" onclick="clearCart()">Empty Cart</button>
+    </p>
+  </section>
+ 
+  <!-- ================= CHECKOUT ================= -->
+  <section id="order">
+    <h2>Checkout</h2>
+    <p class="note">Complete the form below: WhatsApp will open with your order already written. Simply press Send there to transmit it to the boutique.</p>
+    <form id="order-form">
+      <label>Your name
+        <input id="field-name" type="text" required>
+      </label>
+      <label>Your phone
+        <input id="field-phone" type="tel" required>
+      </label>
+      <label>Your address
+        <input id="field-address" type="text" required>
+      </label>
+      <button type="submit" class="btn">Send My Order</button>
+    </form>
+    <p id="order-message"></p>
+  </section>
+ 
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <p>© <span id="year"></span> Soleil Boutique — Elegance · Quality · Confidence</p>
+    <p><a href="index.html">← Back to the store</a></p>
+    <p><a href="admin.html">Admin</a></p>
+  </footer>
+ 
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+</body>
+</html>

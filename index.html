@@ -19,7 +19,7 @@
       <a href="#about">About</a>
       <a href="#order">Order</a>
     </nav>
-    <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+     <a id="cart-btn" href="cart.html">Cart (<span id="cart-count">0</span>)</a>
   </header>
  
   <!-- ================= HERO ================= -->
@@ -32,7 +32,16 @@
   <!-- ================= SELECTION ================= -->
   <section id="selection">
     <h2>The Selection</h2>
-    <div id="products-grid" class="grid"></div>
+    <div class="showcase-wrap">
+      <button class="showcase-arrow" onclick="slideShowcase(-1)">‹</button>
+      <div id="showcase" class="showcase"></div>
+      <button class="showcase-arrow" onclick="slideShowcase(1)">›</button>
+    </div>
+    <div class="showcase-info">
+      <h3 id="showcase-name"></h3>
+      <p class="price" id="showcase-price"></p>
+      <button class="btn" onclick="if (showcaseId) addToCart(showcaseId)">Add to Cart</button>
+    </div>
   </section>
  
   <!-- ================= CART ================= -->
@@ -40,6 +49,10 @@
     <h2>Your Cart</h2>
     <div id="cart-items"></div>
     <p class="total">Total: <span id="cart-total">$0.00</span></p>
+       <p>
+      <a class="btn" href="#order">Proceed to Order</a>
+      <button class="btn btn-light" onclick="clearCart()">Empty Cart</button>
+    </p>
   </section>
  
   <!-- ================= ABOUT ================= -->
@@ -70,6 +83,7 @@
   <!-- ================= FOOTER ================= -->
   <footer>
     <p>© <span id="year"></span> Soleil Boutique — Elegance · Quality · Confidence</p>
+    <p><a href="#home">↑ Back to top</a></p>
     <p><a href="admin.html">Admin</a></p>
   </footer>
  

@@ -11,20 +11,76 @@ try {
   cart = [];
 }
  
-// ---------- Render the catalog into the grid ----------
+// ---------- Render the catalog as a cinematic showcase ----------
+// The products slide on a rail, like in the video: drag or scroll,
+// the pair in the center grows, the others fade, and its name,
+// price and Add to Cart button appear below.
+let showcaseId = null;
+ 
 function renderProducts() {
-  const grid = document.getElementById("products-grid");
-  grid.innerHTML = "";
+  const box = document.getElementById("showcase");
+  box.innerHTML = "";
   getCatalog().forEach(function (p) {
     const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML =
-      '<img src="' + p.photo + '" alt="' + p.name + '">' +
-      "<h3>" + p.name + "</h3>" +
-      '<p class="price">' + formatPrice(currentPrice(p)) + "</p>" +
-      '<button class="btn" onclick="addToCart(\'' + p.id + '\')">Add to Cart</button>';
-    grid.appendChild(card);
+    card.className = "show-card";
+    card.setAttribute("data-id", p.id);
+    card.innerHTML = '<img src="' + p.photo + '" alt="' + p.name + '" draggable="false">';
+    box.appendChild(card);
   });
+ 
+  // Which card is in the center? It becomes the star.
+  let ticking = false;
+  box.addEventListener("scroll", function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(function () { updateShowcase(); ticking = false; });
+    }
+  });
+ 
+  // Drag the rail with the mouse, like in the video
+  let down = false, startX = 0, startScroll = 0;
+  box.addEventListener("pointerdown", function (e) {
+    down = true; startX = e.clientX; startScroll = box.scrollLeft;
+  });
+  window.addEventListener("pointermove", function (e) {
+    if (!down) return;
+    box.scrollLeft = startScroll - (e.clientX - startX);
+  });
+  window.addEventListener("pointerup", function () { down = false; });
+ 
+  updateShowcase();
+}
+ 
+// The centered card grows; its name and price show below the rail
+function updateShowcase() {
+  const box = document.getElementById("showcase");
+  const cards = box.querySelectorAll(".show-card");
+  if (!cards.length) return;
+  const center = box.scrollLeft + box.clientWidth / 2;
+  let best = null, bestDist = Infinity, bestId = null;
+  cards.forEach(function (card) {
+    const c = card.offsetLeft + card.offsetWidth / 2;
+    const dist = Math.abs(c - center);
+    if (dist < bestDist) { bestDist = dist; best = card; bestId = card.getAttribute("data-id"); }
+    card.classList.remove("active");
+  });
+  if (best) {
+    best.classList.add("active");
+    const p = findProduct(bestId);
+    if (p) {
+      showcaseId = bestId;
+      document.getElementById("showcase-name").textContent = p.name;
+      document.getElementById("showcase-price").textContent = formatPrice(currentPrice(p));
+    }
+  }
+}
+ 
+// The arrow buttons slide the rail by one pair
+function slideShowcase(dir) {
+  const box = document.getElementById("showcase");
+  const card = box.querySelector(".show-card");
+  if (!card) return;
+  box.scrollBy({ left: dir * (card.offsetWidth + 24), behavior: "smooth" });
 }
  
 // ---------- Cart ----------
@@ -32,6 +88,14 @@ function addToCart(id) {
   cart.push(id);
   saveCart();
   renderCart();
+  function addToCart(id) {
+  cart.push(id);
+  saveCart();
+  renderCart();
+  document.getElementById("cart-zone").classList.remove("hidden");
+  alert("Added to your cart.");
+}
+
   alert("Added to your cart.");
 }
  
@@ -40,7 +104,14 @@ function removeFromCart(index) {
   saveCart();
   renderCart();
 }
- 
+ // Empty the whole cart at once (asks first, to avoid accidents)
+function clearCart() {
+  if (cart.length === 0) return;
+  if (!confirm("Empty your cart?")) return;
+  cart = [];
+  saveCart();
+  renderCart();
+}
 function saveCart() {
   localStorage.setItem("soleil-cart", JSON.stringify(cart));
 }
@@ -48,6 +119,9 @@ function saveCart() {
 function renderCart() {
   const zone = document.getElementById("cart-items");
   zone.innerHTML = "";
+    if (cart.length === 0) {
+    zone.innerHTML = "<p>Your cart is empty.</p>";
+  }
   let total = 0;
   cart.forEach(function (id, index) {
     const p = findProduct(id);
@@ -63,10 +137,7 @@ function renderCart() {
   document.getElementById("cart-count").textContent = cart.length;
 }
  
-// The Cart button shows or hides the cart zone
-document.getElementById("cart-btn").addEventListener("click", function () {
-  document.getElementById("cart-zone").classList.toggle("hidden");
-});
+// The Cart button is now a link to the cart page (cart.html).
  
 // ---------- Page start ----------
 document.getElementById("year").textContent = new Date().getFullYear();
