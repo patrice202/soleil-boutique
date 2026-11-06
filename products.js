@@ -24,8 +24,15 @@ function getCustomProducts() {
   }
 }
  
-// The full catalog: official products + admin-added products
+/ The full catalog: the Admin-saved catalog if there is one,
+// otherwise the official list above + admin-added products.
 function getCatalog() {
+  try {
+    const saved = JSON.parse(localStorage.getItem("soleil-catalog") || "null");
+    if (saved) return saved;
+  } catch (e) {
+    // fall through to the default catalog below
+  }
   return PRODUCTS.concat(getCustomProducts());
 }
  

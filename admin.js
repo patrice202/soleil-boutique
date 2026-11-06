@@ -43,42 +43,52 @@ function renderOrders() {
   });
 }
  
-// ---------- Prices ----------
+// ---------- Products: names, prices, and delete ----------
+// Every product can be renamed, repriced, or deleted here.
+// Changes are kept in this browser until Download products.js
+// makes them official for everyone.
 function renderPrices() {
   const zone = document.getElementById("prices-list");
   zone.innerHTML = "";
   getCatalog().forEach(function (p) {
     const row = document.createElement("div");
     row.className = "price-row";
-    let html =
+    row.innerHTML =
       '<img class="thumb" src="' + p.photo + '" alt="">' +
-      "<span>" + p.name + "</span>" +
+      '<input type="text" id="name-' + p.id + '" value="' + p.name + '">' +
       '<input type="number" min="0" step="0.01" id="price-' + p.id +
-      '" value="' + currentPrice(p) + '">';
-    if (p.id.charAt(0) === "c") {
-      html += ' <button class="btn btn-light" onclick="deleteProduct(\'' +
-        p.id + '\')">Delete</button>';
-    }
-    row.innerHTML = html;
+      '" value="' + currentPrice(p) + '">' +
+      ' <button class="btn btn-light" onclick="deleteProduct(\'' +
+      p.id + '\')">Delete</button>';
     zone.appendChild(row);
   });
 }
  
+// Save the names + prices of every product as the working catalog
 document.getElementById("save-prices-btn").addEventListener("click", function () {
-  const mods = {};
-  getCatalog().forEach(function (p) {
-    mods[p.id] = Number(document.getElementById("price-" + p.id).value);
+  const catalog = getCatalog().map(function (p) {
+    return {
+      id: p.id,
+      name: document.getElementById("name-" + p.id).value,
+      price: Number(document.getElementById("price-" + p.id).value),
+      photo: p.photo
+    };
   });
-  localStorage.setItem("soleil-prices", JSON.stringify(mods));
+  localStorage.setItem("soleil-catalog", JSON.stringify(catalog));
+  localStorage.removeItem("soleil-prices");
+  localStorage.removeItem("soleil-custom");
   document.getElementById("prices-message").textContent =
-    "Prices saved in this browser. Use Download products.js to make them official for everyone.";
+    "Names and prices saved in this browser. Use Download products.js to make them official for everyone.";
 });
  
-// ---------- Delete a product added from this page ----------
+// ---------- Delete ANY product (saved at once) ----------
 function deleteProduct(id) {
-  const kept = getCustomProducts().filter(function (p) { return p.id !== id; });
-  localStorage.setItem("soleil-custom", JSON.stringify(kept));
+  const kept = getCatalog().filter(function (p) { return p.id !== id; });
+  localStorage.setItem("soleil-catalog", JSON.stringify(kept));
+  localStorage.removeItem("soleil-custom");
   renderPrices();
+  document.getElementById("prices-message").textContent =
+    "Product deleted in this browser. Use Download products.js to make it official for everyone.";
 }
  
 // ---------- Add a product, with photo upload ----------
@@ -110,14 +120,15 @@ document.getElementById("add-product-btn").addEventListener("click", function ()
       canvas.height = h;
       canvas.getContext("2d").drawImage(img, 0, 0, w, h);
  
-      const custom = getCustomProducts();
-      custom.push({
+      const catalog = getCatalog();
+      catalog.push({
         id: "c" + Date.now(),
         name: name,
         price: price,
         photo: canvas.toDataURL("image/jpeg", 0.82)
       });
-      localStorage.setItem("soleil-custom", JSON.stringify(custom));
+      localStorage.setItem("soleil-catalog", JSON.stringify(catalog));
+      localStorage.removeItem("soleil-custom");
  
       msg.textContent = "Product added. It now appears in the store on this browser.";
       document.getElementById("new-name").value = "";
