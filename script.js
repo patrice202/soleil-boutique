@@ -202,12 +202,12 @@ document.getElementById("order-form").addEventListener("submit", function (e) {
   localStorage.setItem("soleil-orders", JSON.stringify(previous));
  
   // The WhatsApp message, fully written
-  const text = "Hello Soleil Boutique! I would like to order:\n" + lines +
+  const text = "Hello GEORVÉA, I found my perfect pair!:\n" + lines +
     "Total: " + formatPrice(total) +
     "\nName: " + name + "\nPhone: " + phone + "\nAddress: " + address;
     // Instant alert on the boutique phone
   notifyBoutique(
-    "Soleil Boutique - New order",
+    "GEORVÉA - New order",
     name + " - " + formatPrice(total) + "\n" + lines + "Phone: " + phone
   );
   window.open("https://wa.me/" + BOUTIQUE_WHATSAPP + "?text=" + encodeURIComponent(text), "_blank");

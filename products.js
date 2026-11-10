@@ -6,7 +6,7 @@
 // ============================================================
  
 const PRODUCTS = [
-  { id: "p1", name: "Georgie Toulimen", price: 15, photo: "glasses.jpeg" },
+  { id: "p1", name: "GUIVIVI Retro Oval", price: 15, photo: "glasses.jpeg" },
   { id: "p2", name: "Riviera Gold", price: 15, photo: "glasses1.jpeg" }
 ];
  
